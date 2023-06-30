@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>OpenRent Technical Screen - Alex Biet</title>
+    </head>
+    <body>
+        <h1>Open console!</h1>
+        <script>
+
+            function processString(input) {
+                // Reverse the input string
+                const reversedString = input.split('').reverse().join('');
+
+                // Find the earliest character in the alphabet (letters only)
+                const earliestChar = input
+                    .split('')
+                    .filter((char) => /[a-z]/i.test(char))
+                    .sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' }))
+                    .shift();
+
+                // Count the number of vowels
+                const vowelCount = (input.match(/[aeiou]/gi) || []).length;
+
+                // Determine the "open" or "rent" suffix
+                const suffix = vowelCount % 2 === 0 ? 'rent' : 'open';
+
+                // Concatenate the string, reversed string, earliest character, and suffix
+                const result = "String: " + input + 
+                            " | Reversed string: " + reversedString + 
+                            " | Earliest character: " + earliestChar + 
+                            " | Suffix : " + suffix;
+                return result;
+            }
+            
+            // Print console
+            console.log('\x1B[41;93;4mOpenRent Technical Screen - Alex Biet\x1B[m');
+            console.log(processString('Hello World!'));
+            console.log(processString('Open Rent UK'));
+
+        </script>
+    </body>
+</html>
